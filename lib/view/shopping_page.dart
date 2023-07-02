@@ -67,6 +67,9 @@ class ShoppingPage extends StatelessWidget {
         const Text(
           'Total amount',
           style: TextStyle(fontSize: 25, color: Colors.white),
+        ),
+        const SizedBox(
+          height: 100,
         )
       ]),
       floatingActionButton: FloatingActionButton.extended(
