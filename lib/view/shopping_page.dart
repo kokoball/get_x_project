@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/cart_controller.dart';
 import '../controller/shopping_controller.dart';
 
 class ShoppingPage extends StatelessWidget {
   ShoppingPage({Key? key}) : super(key: key);
   final shoppingController = Get.put(ShoppingController());
+  final cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,10 @@ class ShoppingPage extends StatelessWidget {
                               ],
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                cartController
+                                    .addToItem(controller.products[index]);
+                              },
                               child: const Text('Add to cart'),
                             )
                           ],
@@ -64,9 +69,13 @@ class ShoppingPage extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        const Text(
-          'Total amount',
-          style: TextStyle(fontSize: 25, color: Colors.white),
+        GetX<CartController>(
+          builder: (controller) {
+            return Text(
+              'Total amount: \$ ${controller.totalPrice}',
+              style: const TextStyle(fontSize: 25, color: Colors.white),
+            );
+          },
         ),
         const SizedBox(
           height: 100,
@@ -74,11 +83,15 @@ class ShoppingPage extends StatelessWidget {
       ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        label: const Text(
-          'item',
-          style: TextStyle(
-            fontSize: 20,
-          ),
+        label: GetX<CartController>(
+          builder: (controller) {
+            return Text(
+              cartController.count.toString(),
+              style: const TextStyle(
+                fontSize: 20,
+              ),
+            );
+          },
         ),
         icon: const Icon(
           Icons.add_shopping_cart_rounded,
