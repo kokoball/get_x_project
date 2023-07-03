@@ -1,6 +1,9 @@
 # get_x_project
 
-A new Flutter project.
+flutter의 상태관리 도구인 getX 연습 프로젝트 1
+- 임시 데이터를 이용한 간단한 화면 구현
+- model, controller, view 로직 분리
+
 
 ## Getting Started
 
